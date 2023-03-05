@@ -2,6 +2,7 @@ import styles from "./CenterBlock.module.scss";
 import { Inter, Space_Grotesk } from "@next/font/google";
 import { ModalWindow } from "../ModalWindow/ModalWindow";
 import { useState } from "react";
+import { motion, AnimatePresence  } from "framer-motion";
 
 const inter = Inter({ subsets: [ "latin" ] });
 const space_grotesk = Space_Grotesk({ subsets: [ "latin" ] });
@@ -28,13 +29,21 @@ export function CenterBlock() {
           </button>
         </div>
       </div>
-      {
-        isModalActive && (
-          <ModalWindow
-            buttonAction={() => setIsModalActive(false)}
-          />
-        )
-      }
+      <AnimatePresence>
+        {
+          isModalActive && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <ModalWindow
+                buttonAction={() => setIsModalActive(false)}
+              />
+            </motion.div>
+          )
+        }
+      </AnimatePresence>
     </>
   )
 }
