@@ -1,11 +1,17 @@
 .centerBlock {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 90px;
+
   .logo {
 
   }
   .description {
-
+    font-size: 14px;
   }
   .button {
-    
+
   }
 }
