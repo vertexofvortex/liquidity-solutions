@@ -1,15 +1,30 @@
 .centerBlock {
-  width: 50%;
+  max-width: 950px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 90px;
+  padding: 24px;
+
+  @media (max-width: 428px) {
+    gap: 60px
+  }
 
   .logo {
-
+    @media (max-width: 1024px) {
+      img {
+        width: 424px;
+      }
+    }
+    @media (max-width: 428px) {
+      img {
+        width: 100%;
+      }
+    }
   }
   .description {
     font-size: 14px;
+    line-height: 18px;
   }
   .button {
 
