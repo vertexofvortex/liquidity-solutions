@@ -1,3 +1,4 @@
+import { useModalWindow } from "@/context/ModalWindowContext";
 import { Inter, Space_Grotesk } from "@next/font/google";
 import { useState } from "react";
 import styles from "./ModalWindow.module.scss";
@@ -5,37 +6,12 @@ import styles from "./ModalWindow.module.scss";
 const inter = Inter({ subsets: [ "latin" ] });
 const space_grotesk = Space_Grotesk({ subsets: [ "latin" ] });
 
-interface Props {
-  buttonAction?: Function;
-}
-
-export function ModalWindow({
-  buttonAction,
-}: Props) {
+export function ModalWindow() {
   const [ nameState, setNameState ] = useState<string>("");
   const [ emailState, setEmailState ] = useState<string>("");
   const [ messageState, setMessageState ] = useState<string>("");
-  
-  async function sendMessage(
-    name: string,
-    email: string,
-    message: string,
-  ) {
-    const res = await fetch(
-      "/api/sendMessage",
-      { 
-        method: "POST",
-        headers: { "Content-Type": "multipart/form-data" },
-        body: JSON.stringify({
-          name: name,
-          email: email,
-          message: message,
-        }),
-      },
-    );
 
-    console.log(await res.json());
-  }
+  const { isOpen, open, close, isSent, send } = useModalWindow();
 
   return (
     <div className={styles.modalWindowContainer}>
@@ -55,12 +31,20 @@ export function ModalWindow({
           placeholder={"Your message"}
           onChange={(e) => setMessageState(e.target.value)}
         />
-        <button
-          className={space_grotesk.className}
-          onClick={() => sendMessage(nameState, emailState, messageState)}
-        >
-          Send
-        </button>
+        <div className={styles.buttons}>
+          <button
+            className={space_grotesk.className}
+            onClick={() => send(nameState, emailState, messageState)}
+          >
+            Send
+          </button>
+          <button
+            className={space_grotesk.className}
+            onClick={() => close()}
+          >
+            Cancel
+          </button>
+        </div>
       </div>
     </div>
   )

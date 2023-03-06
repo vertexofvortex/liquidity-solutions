@@ -21,8 +21,13 @@
     width: 500px;
     align-items: center;
 
-    button {
-      background: #6A6A6A;
+    .buttons {
+      display: flex;
+      gap: 25px;
+      
+      button {
+        background: #6A6A6A;
+      }
     }
   }
 }
