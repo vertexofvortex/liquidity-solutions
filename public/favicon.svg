@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="160" height="160"><svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M147.844 44.635C143.66 37.3878 110.897 48.4725 74.6647 69.3934C38.4325 90.3144 12.4521 113.149 16.6359 120.396" stroke="#343434" stroke-width="7"></path>
+<path d="M6.92139 59.7857C9.08705 51.7024 43.6029 53.9287 84.0146 64.7582C124.426 75.5877 155.431 90.9195 153.265 99.0027" stroke="#343434" stroke-width="7"></path>
+<rect x="3.76123" y="80" width="45.4544" height="106.06" rx="3" transform="rotate(-45 3.76123 80)" fill="#6A6A6A"></rect>
+<rect width="45.4544" height="106.06" rx="3" transform="matrix(0.707068 -0.707145 0.707068 0.707145 46.6133 37.1428)" fill="#6A6A6A"></rect>
+<path d="M147.844 44.6349C152.028 51.8821 126.047 74.717 89.8152 95.6379C53.583 116.559 20.8195 127.644 16.6357 120.396" stroke="#343434" stroke-width="7"></path>
+<path d="M6.92128 59.7857C4.75562 67.8689 35.7602 83.2007 76.1719 94.0302C116.584 104.86 151.099 107.086 153.265 99.0027" stroke="#343434" stroke-width="7"></path>
+</svg><style>@media (prefers-color-scheme: light) { :root { filter: none; } }
+@media (prefers-color-scheme: dark) { :root { filter: contrast(0.3846153846153846) brightness(4.5); } }
+</style></svg>

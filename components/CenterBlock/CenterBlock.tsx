@@ -8,7 +8,8 @@ const inter = Inter({ subsets: [ "latin" ] });
 const space_grotesk = Space_Grotesk({ subsets: [ "latin" ] });
 
 export function CenterBlock() {
-  const [ isModalActive, setIsModalActive ] = useState<boolean>(false)
+  const [ isModalActive, setIsModalActive ] = useState<boolean>(false);
+  
 
   return (
     <>
@@ -37,9 +38,7 @@ export function CenterBlock() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              <ModalWindow
-                buttonAction={() => setIsModalActive(false)}
-              />
+              <ModalWindow />
             </motion.div>
           )
         }
