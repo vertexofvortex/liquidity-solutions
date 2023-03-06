@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 
 interface IModalWindowContext {
   isOpen: boolean;
@@ -36,6 +36,10 @@ export function ModalWindowProvider({ children }: Props) {
   const [ isOpen, setIsOpen ] = useState<boolean>(false);
   const [ isSent, setIsSent ] = useState<boolean>(false);
 
+  useEffect(() => {
+    setIsSent(parseInt(localStorage.getItem("sent")!) + 900000 >= Date.now());    
+  }, []);
+
   const open = () => {
     setIsOpen(true);
   };
@@ -69,6 +73,7 @@ export function ModalWindowProvider({ children }: Props) {
 
     setIsSent(true);
     setIsOpen(false);
+    localStorage.setItem("sent", `${Date.now()}`)
   };
 
   const value = {
