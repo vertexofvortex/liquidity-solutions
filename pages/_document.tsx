@@ -12,7 +12,7 @@ export default function Document() {
         <meta property="og:site_name" content="Liquidity Solutions" />
         <meta property="og:url" content="https://liquidity-solutions.pl" />
 
-        <meta property="og:title" content="Assets Management" />
+        {/* <meta property="og:title" content="Assets Management" /> */}
         <meta property="og:description" content="Our company is dedicated to delivering exceptional service and execution quality to our clients, leveraging our deep expertise and cutting-edge technology to help them achieve their trading goals." />
         <meta property="og:image" content="/lsog.png" />
       </Head>
