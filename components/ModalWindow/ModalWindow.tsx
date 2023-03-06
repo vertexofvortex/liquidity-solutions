@@ -1,17 +1,43 @@
 import { useModalWindow } from "@/context/ModalWindowContext";
 import { Inter, Space_Grotesk } from "@next/font/google";
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { object, string } from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import styles from "./ModalWindow.module.scss";
+import { AnimatePresence, motion } from "framer-motion";
 
 const inter = Inter({ subsets: [ "latin" ] });
 const space_grotesk = Space_Grotesk({ subsets: [ "latin" ] });
 
-export function ModalWindow() {
-  const [ nameState, setNameState ] = useState<string>("");
-  const [ emailState, setEmailState ] = useState<string>("");
-  const [ messageState, setMessageState ] = useState<string>("");
+interface IForm {
+  name: string;
+  email: string;
+  message: string;
+}
 
-  const { isOpen, open, close, isSent, send } = useModalWindow();
+export function ModalWindow() {
+  const { close, send } = useModalWindow();
+
+  const validationSchema = object({
+    name: string()
+      .required("Specify your name")
+      .max(36, "Your name cannot be longer than 36 characters"),
+    email: string()
+      .required("Specify your e-mail address")
+      .max(50, "E-mail cannot be longer than 50 characters")
+      .matches(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, "E-mail must be valid"),
+    message: string()
+      .required("Fill the message field")
+      .max(255, "Please, fit your message within 255 characters"),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IForm>({
+    resolver: yupResolver(validationSchema)
+  });
 
   return (
     <div className={styles.modalWindowContainer}>
@@ -19,22 +45,40 @@ export function ModalWindow() {
         <input 
           className={inter.className}
           placeholder={"Name"}
-          onChange={(e) => setNameState(e.target.value)}
+          {...register("name")}
         />
         <input 
           className={inter.className}
           placeholder={"E-mail"}
-          onChange={(e) => setEmailState(e.target.value)}
+          {...register("email")}
         />
         <textarea rows={13}
           className={inter.className}
           placeholder={"Your message"}
-          onChange={(e) => setMessageState(e.target.value)}
+          {...register("message")}
         />
+        <div className={`${styles.errors} ${inter.className}`}>
+          <AnimatePresence>
+            {Object.values(errors).map((item, key) => (
+              <motion.div
+                key={key}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+              >
+                <img src="/error.svg" />
+                {item.message}
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
         <div className={styles.buttons}>
           <button
             className={space_grotesk.className}
-            onClick={() => send(nameState, emailState, messageState)}
+            onClick={handleSubmit(
+              (data) => send(data.name, data.email, data.message),
+              (error) => console.log(error)
+            )}
           >
             Send
           </button>

@@ -21,10 +21,22 @@
     width: 500px;
     align-items: center;
 
+    .errors {
+      width: 100%;
+      font-size: 14px;
+      color: #d5d5d5;
+      
+      > div {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+    }
+
     .buttons {
       display: flex;
       gap: 25px;
-      
+
       button {
         background: #6A6A6A;
       }
