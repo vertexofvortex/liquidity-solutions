@@ -4,6 +4,7 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
+        <title>Liquidity Solutions</title>
         <link rel="shortcut icon" href="/favicon.svg" />
 
         <meta property="og:type" content="website" />
