@@ -7,7 +7,7 @@ export default async function handler(
 ) {
   const requestBody = JSON.parse(req.body);
   const body = {
-    chat_id: -830998553,
+    chat_id: process.env.TG_CHAT_ID,
     text: `<b>💧 Liquidity Solutions</b>\n┗ <code>${crypto.createHash("md5").update(req.body + Date.now()).digest("hex")}</code>\n\n<i>ℹ️ New request</i>\n┣👤: <code>${requestBody.name}</code>\n┣📧: <code>${requestBody.email}</code>\n┗✍️: <code>${requestBody.message}</code>`,
     parse_mode: "html",
   };
